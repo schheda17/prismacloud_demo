@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: mywebsite
+    tier: frontend-deployment
+spec:
+  replicas: 1
+  template:
+    metadata :
+      name : voting-app-pod
+      labels:
+        name : voting-app-pod
+        app : demo-voting-app
+    spec :
+      containers :
+      - name : voting-app
+        image : kodekloud/examplevotingapp_vote:v1
+        ports:
+          - containerPort : 80  
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 150m
+            memory: 150Mi
+
+  selector:
+    matchLabels:
+        app : demo-voting-app    
